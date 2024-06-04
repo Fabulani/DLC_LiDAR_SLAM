@@ -1,0 +1,31 @@
+
+version: '2.3'
+services:
+  rasa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    shm_size: '2gb'
+
+    image: 'rasa:latest'
+    # -v option
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /home/aisl/takagi/projects/:/project
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1
+    device_cgroup_rules:
+      - 'c 81:* rmw'
+      - 'c 189:* rmw'
+    # -i option
+    stdin_open: true
+    # -t option
+    tty: true
+
+    privileged: true

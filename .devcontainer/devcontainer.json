@@ -1,0 +1,41 @@
+{
+    "name": "[ROS2] DLC-SLAM dev",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "context": ".."
+    },
+    "runArgs": [
+        "--gpus=all"
+    ],
+    "postCreateCommand": [
+        "nvidia-smi"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
+    "workspaceFolder": "/workspaces",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "eamodio.gitlens",
+                "SirTori.indenticator",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.pylint",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.jupyter-keymap",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                "ms-python.black-formatter",
+                "aaron-bond.better-comments",
+                "yzhang.markdown-all-in-one",
+                "shd101wyy.markdown-preview-enhanced",
+                "DavidAnson.vscode-markdownlint",
+                "PKief.material-icon-theme",
+                "matangover.mypy",
+                "Gruntfuggly.todo-tree",
+                "uctakeoff.vscode-counter",
+                "esbenp.prettier-vscode",
+                "mhutchie.git-graph"
+            ]
+        }
+    }
+}
