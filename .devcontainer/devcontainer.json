@@ -7,11 +7,11 @@
     "runArgs": [
         "--gpus=all"
     ],
-    "postCreateCommand": [
-        "nvidia-smi"
-    ],
-    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
-    "workspaceFolder": "/workspaces",
+    // "postCreateCommand": [
+    //     "nvidia-smi"
+    // ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
     "customizations": {
         "vscode": {
             "extensions": [

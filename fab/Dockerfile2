@@ -1,0 +1,42 @@
+FROM nvidia/cuda:11.3.1-devel-ubuntu20.04
+
+# Install system packages
+RUN apt-get update && apt-get install -y \ 
+    wget && \
+    python3-pip 
+
+# general python library
+RUN pip install --upgrade pip && pip install --no-cache-dir \
+    black==22.3.0 \
+    jupyterlab==3.4.2 \
+    jupyterlab_code_formatter==1.4.11 \
+    lckr-jupyterlab-variableinspector==3.0.9 \
+    jupyterlab_widgets==1.1.0 \
+    ipywidgets==7.7.0 \
+    import-ipynb==0.1.4 
+
+# Install PyTorch
+RUN pip install torch==1.10.0+cu111 torchvision==0.11.0+cu111 torchaudio==0.10.0 -f https://download.pytorch.org/whl/torch_stable.html
+
+
+# # Install miniconda
+# RUN mkdir -p /opt/miniconda3 && \
+#     wget https://repo.anaconda.com/miniconda/Miniconda3-py310_24.4.0-0-Linux-x86_64.sh -O /opt/miniconda3/miniconda.sh && \
+#     bash /opt/miniconda3/miniconda.sh -b -u -p /opt/miniconda3 && \
+#     rm -rf /opt/miniconda3/miniconda.sh
+
+# # Update PATH to include conda
+# ENV PATH=/opt/miniconda3/bin:$PATH
+
+# Create a new conda environment and install packages
+# RUN conda create --name myenv python=3.8 -y && \
+#     conda run -n myenv conda install -y pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+# ENV CONDA_DEFAULT_ENV=myenv
+# ENV PATH=/opt/miniconda3/envs/myenv/bin:$PATH
+# RUN echo "source activate myenv" >> ~/.bashrc
+
+# Install Pytorch
+# RUN conda install -y pytorch==1.10.0 torchvision==0.11.0 torchaudio==0.10.0 cudatoolkit=11.3 -c pytorch -c conda-forge
+
+
+CMD ["/bin/bash"]
